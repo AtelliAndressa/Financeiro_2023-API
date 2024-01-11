@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Dominio.Interfaces.Generics;
+using Entities.Entidades;
 
 namespace Dominio.Interfaces.IUsuarioSistemaFinanceiro
 {
-    public interface InterfaceUsuarioSistemaFinanceiro
+    public interface InterfaceUsuarioSistemaFinanceiro : InterfaceGeneric<UsuarioSistemaFinanceiro>
     {
     }
 }
