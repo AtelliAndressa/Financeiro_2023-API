@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Entities.Notificacoes;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Entidades
 {
-    public class Base
+    public class Base : Notifica
     {
         [Display(Name = "Código")]
         public int Id { get; set; }
