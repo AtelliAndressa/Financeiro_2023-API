@@ -1,6 +1,11 @@
 using Dominio.Interfaces.Generics;
+using Dominio.Interfaces.ICategoria;
+using Dominio.Interfaces.IDespesa;
+using Dominio.Interfaces.ISistemaFinanceiro;
+using Dominio.Interfaces.IUsuarioSistemaFinanceiro;
 using Entities.Entidades;
 using InfraEstrutura.Configuracao;
+using InfraEstrutura.Repositorio;
 using InfraEstrutura.Repositorio.Generics;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -24,6 +30,10 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 //Interface Repositorio
 builder.Services.AddSingleton(typeof(InterfaceGeneric<>), typeof(RepositoryGenerics<>));
+builder.Services.AddSingleton<InterfaceCategoria, RepositorioCategoria>();
+builder.Services.AddSingleton<InterfaceDespesa, RepositorioDespesa>();
+builder.Services.AddSingleton<InterfaceSistemaFinanceiro, RepositorioSistemaFinanceiro>();
+builder.Services.AddSingleton<InterfaceUsuarioSistemaFinanceiro, RepositorioUsuarioSistemaFinanceiro>();
 
 
 var app = builder.Build();
