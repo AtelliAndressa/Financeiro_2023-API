@@ -19,6 +19,7 @@ namespace InfraEstrutura.Configuracao
 
         public DbSet<Despesa> Despesas { get; set; }
 
+        //Configuração da string de conexão.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
