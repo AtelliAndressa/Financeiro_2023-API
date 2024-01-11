@@ -6,5 +6,9 @@ namespace InfraEstrutura.Repositorio
 {
     public class RepositorioCategoria : RepositoryGenerics<Categoria>, InterfaceCategoria
     {
+        public Task<IList<Categoria>> ListarCategoriasUsuario(string emailUsuario)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
