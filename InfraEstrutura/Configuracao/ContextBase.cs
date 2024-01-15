@@ -17,7 +17,7 @@ namespace InfraEstrutura.Configuracao
 
         public DbSet<Categoria> Categoria {  get; set; }
 
-        public DbSet<Despesa> Despesas { get; set; }
+        public DbSet<Despesa> Despesa { get; set; }
 
         //Configuração da string de conexão.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
