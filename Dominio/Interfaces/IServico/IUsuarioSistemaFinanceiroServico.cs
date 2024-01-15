@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Dominio.Interfaces.IServico
 {
     public interface IUsuarioSistemaFinanceiroServico
     {
+        Task CadastrarUsuarioSistema(UsuarioSistemaFinanceiro usuarioSistemaFinanceiro);
     }
 }
