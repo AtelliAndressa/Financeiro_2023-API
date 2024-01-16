@@ -1,18 +1,19 @@
 ﻿using Dominio.Interfaces.IServico;
 using Dominio.Interfaces.ISistemaFinanceiro;
+using Entities.Entidades;
 
 namespace Dominio.Servicos
 {
-    public class SistemaFinanceiro : ISistemaFinanceiroServico
+    public class SistemaFinanceiroServico : ISistemaFinanceiroServico
     {
         private readonly InterfaceSistemaFinanceiro _interfaceSistemaFinanceiro;
 
-        public SistemaFinanceiro(InterfaceSistemaFinanceiro interfaceSistemaFinanceiro)
+        public SistemaFinanceiroServico(InterfaceSistemaFinanceiro interfaceSistemaFinanceiro)
         {
             _interfaceSistemaFinanceiro = interfaceSistemaFinanceiro;
         }
 
-        public async Task AdicionarSistemaFinanceiro(Entities.Entidades.SistemaFinanceiro sistemaFinanceiro)
+        public async Task AdicionarSistemaFinanceiro(SistemaFinanceiro sistemaFinanceiro)
         {
             var valido = sistemaFinanceiro.ValidarPropriedadeString(sistemaFinanceiro.Nome, "Nome");
 
@@ -31,7 +32,7 @@ namespace Dominio.Servicos
             }
         }
 
-        public async Task AtualizarSistemaFinanceiro(Entities.Entidades.SistemaFinanceiro sistemaFinanceiro)
+        public async Task AtualizarSistemaFinanceiro(SistemaFinanceiro sistemaFinanceiro)
         {
             var valido = sistemaFinanceiro.ValidarPropriedadeString(sistemaFinanceiro.Nome, "Nome");
 
