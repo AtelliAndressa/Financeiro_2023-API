@@ -41,5 +41,6 @@ namespace Dominio.Servicos
                 sistemaFinanceiro.DiaFechamento = 1;
                 await _interfaceSistemaFinanceiro.Update(sistemaFinanceiro);
             }
+        }
     }
 }
