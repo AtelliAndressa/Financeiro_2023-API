@@ -9,9 +9,11 @@ using Entities.Entidades;
 using InfraEstrutura.Configuracao;
 using InfraEstrutura.Repositorio;
 using InfraEstrutura.Repositorio.Generics;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using WebApi.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +44,39 @@ builder.Services.AddSingleton<ICategoriaServico, CategoriaServico>();
 builder.Services.AddSingleton<IDespesaServico, DespesaServico>();
 builder.Services.AddSingleton<ISistemaFinanceiroServico, SistemaFinanceiroServico>();
 builder.Services.AddSingleton<IUsuarioSistemaFinanceiroServico, UsuarioSistemaFinanceiroServico>();
+
+//Configuração Autenticação
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(option =>
+    {
+        option.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+
+            ValidIssuer = "Teste.Securiry.Bearer",
+            ValidAudience = "Teste.Securiry.Bearer",
+            IssuerSigningKey = JwtSecuritykey.Create("Secret_Key-12345678")
+        };
+
+        option.Events = new JwtBearerEvents
+        {
+            OnAuthenticationFailed = context =>
+            {
+                Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
+                return Task.CompletedTask;
+            },
+            OnTokenValidated = context =>
+            {
+                Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
+                return Task.CompletedTask;
+            }
+        };
+    });
+
+
 
 var app = builder.Build();
 
