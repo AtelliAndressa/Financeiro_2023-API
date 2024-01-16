@@ -10,7 +10,6 @@ using InfraEstrutura.Configuracao;
 using InfraEstrutura.Repositorio;
 using InfraEstrutura.Repositorio.Generics;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WebApi.Token;
@@ -88,6 +87,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//new
+app.UseAuthentication();
 
 app.UseAuthorization();
 
