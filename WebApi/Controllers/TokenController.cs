@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using WebApi.Models;
 using WebApi.Token;
 
@@ -31,10 +33,13 @@ namespace WebApi.Controllers
             }
 
             var result = await _signInManager.PasswordSignInAsync(input.Email, input.Password, false, lockoutOnFailure: false);
-            
+
             if (result.Succeeded)
             {
-                var token = new TokenJWTBuilder().AddSecurityKey(JwtSecuritykey.Create("Secret_Key-12345678"))
+                // Ensure that the key size is at least 256 bits
+                var secretKey = Encoding.UTF8.GetBytes("Secret_Key-12345678".PadRight(32));
+
+                var token = new TokenJWTBuilder().AddSecurityKey(new SymmetricSecurityKey(secretKey))
                     .AddSubject("Canal Dev Net Core")
                     .AddIssuer("Teste.Securiry.Bearer")
                     .AddAudience("Teste.Securiry.Bearer")
@@ -43,8 +48,10 @@ namespace WebApi.Controllers
                     .Builder();
 
                 return Ok(token.value);
-            } else
+            }
+            else
             {
+               
                 return Unauthorized();
             }
         }
