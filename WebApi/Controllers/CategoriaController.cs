@@ -44,5 +44,53 @@ namespace WebApi.Controllers
 
             return categoria;
         }
+
+        /// <summary>
+        /// Atualizar uma categoria.
+        /// </summary>
+        /// <param name="categoria"></param>
+        /// <returns></returns>
+        [HttpPut("/api/AtualizarCategoria")]
+        [Produces("application/json")]
+        public async Task<object> AtualizarCategoria(Categoria categoria)
+        {
+            await _iCategoriaServico.AtualizarCategoria(categoria);
+
+            return categoria;
+        }
+
+        /// <summary>
+        /// Obter uma categoria pelo id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("/api/ObterCategoria")]
+        [Produces("application/json")]
+        public async Task<object> ObterCategoria(int id)
+        {
+           return await _interfaceCategoria.GetEntityById(id);
+        }
+
+        /// <summary>
+        /// Método para deletar uma categoria.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("/api/DeletarCategoria")]
+        [Produces("application/json")]
+        public async Task<object> DeletarCategoria(int id)
+        {
+            try {
+
+                var categoria = await _interfaceCategoria.GetEntityById(id);
+
+                await _interfaceCategoria.Delete(categoria);
+            }
+            catch(Exception ex)
+            {
+                return Task.FromResult(false);
+            }
+            return Task.FromResult(true);
+        }
     }
 }
