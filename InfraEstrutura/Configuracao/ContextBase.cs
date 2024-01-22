@@ -46,7 +46,7 @@ namespace InfraEstrutura.Configuracao
         public string ObterStringConexao()
         {
 
-            return "Data Source=DESKTOP-30B570N\\SQLEXPRESS;Initial Catalog=FINANCEIRO_2023;Integrated Security=True";
+            return "Data Source=DESKTOP-30B570N\\SQLEXPRESS;Initial Catalog=FINANCEIRO_2023;Integrated Security=True;TrustServerCertificate=True;";
         }
     }
 }
