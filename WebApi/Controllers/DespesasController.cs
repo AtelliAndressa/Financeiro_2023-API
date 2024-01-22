@@ -95,5 +95,16 @@ namespace WebApi.Controllers
             }
             return Task.FromResult(true);
         }
+
+        /// <summary>
+        /// Metodo que é usado no dashboard.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("/api/CarregarGraficos")]
+        [Produces("application/json")]
+        public async Task<object> CarregarGraficos(string emailUsuario)
+        {
+            return await _iDespesaServico.CarregarGraficos(emailUsuario);
+        }
     }
 }
