@@ -19,6 +19,11 @@ namespace WebApi.Controllers
             _iSistemaFinanceiroServico = iSistemaFinanceiroServico;
         }
 
+        /// <summary>
+        /// Método para listar os sistemas do usuário.
+        /// </summary>
+        /// <param name="emailUsuario"></param>
+        /// <returns></returns>
         [HttpGet("/api/ListarSistemaUsuario")]
         [Produces("application/json")]
         public async Task<object> ListarSistemaUsuario(string emailUsuario)
@@ -26,6 +31,11 @@ namespace WebApi.Controllers
             return await _interfaceSistemaFinanceiro.ListarSistemasUsuario(emailUsuario);
         }
 
+        /// <summary>
+        /// Método para adicionar um sistema para o usuário.
+        /// </summary>
+        /// <param name="sistemaFinanceiro"></param>
+        /// <returns></returns>
         [HttpPost("/api/AdicionarSistemaFinanceiro")]
         [Produces("application/json")]
         public async Task<object> AdicionarSistemaFinanceiro(SistemaFinanceiro sistemaFinanceiro)
@@ -35,6 +45,11 @@ namespace WebApi.Controllers
             return Task.FromResult(sistemaFinanceiro);
         }
 
+        /// <summary>
+        /// Método para atualizar o sistema do usuário.
+        /// </summary>
+        /// <param name="sistemaFinanceiro"></param>
+        /// <returns></returns>
         [HttpPut("/api/AtualizarSistemaFinanceiro")]
         [Produces("application/json")]
         public async Task<object> AtualizarSistemaFinanceiro(SistemaFinanceiro sistemaFinanceiro)
@@ -44,6 +59,11 @@ namespace WebApi.Controllers
             return Task.FromResult(sistemaFinanceiro);
         }
 
+        /// <summary>
+        /// Método para obter um sistema.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("/api/ObterSistemaFinanceiro")]
         [Produces("application/json")]
         public async Task<object> ObterSistemaFinanceiro(int id)
@@ -51,6 +71,11 @@ namespace WebApi.Controllers
             return await _interfaceSistemaFinanceiro.GetEntityById(id);
         }
 
+        /// <summary>
+        /// Método para deletar um sistema.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("/api/DeletarSistemaFinanceiro")]
         [Produces("application/json")]
         public async Task<object> DeletarSistemaFinanceiro(int id)

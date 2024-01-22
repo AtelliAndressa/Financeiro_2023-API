@@ -21,7 +21,11 @@ namespace WebApi.Controllers
             _signInManager = signInManager;
         }
         
-
+        /// <summary>
+        /// Método para adicionar um usuário ao sistema.
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [Produces("apllication/json")]
         [HttpPost("/api/AdicionarUsuario")]

@@ -22,6 +22,11 @@ namespace WebApi.Controllers
             _signInManager = signInManager;
         }
 
+        /// <summary>
+        /// Método para gerar o token que será utilizado para autorizar o acesso ao sistema.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [Produces("application/json")]
         [HttpPost("/api/CreateToken")]

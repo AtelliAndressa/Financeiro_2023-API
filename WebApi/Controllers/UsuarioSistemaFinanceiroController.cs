@@ -20,6 +20,11 @@ namespace WebApi.Controllers
             _iUsuarioSistemaFinanceiroServico = iUsuarioSistemaFinanceiroServico;
         }
 
+        /// <summary>
+        /// Método para listar os sistemas do usuário
+        /// </summary>
+        /// <param name="idSistema"></param>
+        /// <returns></returns>
         [HttpGet("/api/ListarSistemasUsuario")]
         [Produces("application/json")]
         public async Task<object> ListarSistemasUsuario(int idSistema)
@@ -27,6 +32,12 @@ namespace WebApi.Controllers
             return await _interfaceUsuarioSistemaFinanceiro.ListarUsuariosSistema(idSistema);
         }
 
+        /// <summary>
+        /// Método para cadastrar um usuario para o sistema.
+        /// </summary>
+        /// <param name="idSistema"></param>
+        /// <param name="emailUsuario"></param>
+        /// <returns></returns>
         [HttpPost("/api/CadastrarUsuarioSistema")]
         [Produces("application/json")]
         public async Task<object> CadastrarUsuarioSistema(int idSistema, string emailUsuario)
@@ -49,6 +60,11 @@ namespace WebApi.Controllers
             return Task.FromResult(true);
         }
 
+        /// <summary>
+        /// Método para deletar um usuario.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("/api/DeletarUsuarioSistema")]
         [Produces("application/json")]
         public async Task<object> DeletarUsuarioSistema(int id)
