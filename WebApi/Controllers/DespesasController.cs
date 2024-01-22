@@ -30,7 +30,7 @@ namespace WebApi.Controllers
         [Produces("application/json")]
         public async Task<object> ListarDespesasUsuario(string emailUsuario)
         {
-            return _interfaceDespesa.ListarDespesasUsuario(emailUsuario);
+            return await _interfaceDespesa.ListarDespesasUsuario(emailUsuario);
         }
 
         /// <summary>
