@@ -7,6 +7,7 @@ namespace Entities.Entidades
     [Table("Despesa")]
     public class Despesa : Base
     {
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Valor { get; set; }
 
         public int Mes {  get; set; }

@@ -1,6 +1,7 @@
 ﻿using Entities.Entidades;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace InfraEstrutura.Configuracao
 {
@@ -24,7 +25,7 @@ namespace InfraEstrutura.Configuracao
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(ObterStringConexao());
+                optionsBuilder.UseSqlServer(ObterStringConexao(), b => b.MigrationsAssembly("InfraEstrutura"));
                 base.OnConfiguring(optionsBuilder);
             }
 
@@ -34,6 +35,10 @@ namespace InfraEstrutura.Configuracao
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ApplicationUser>().ToTable("AspNetUsers").HasKey(t => t.Id);
+
+            builder.Entity<Despesa>()
+                .Property(d => d.Valor)
+                .HasColumnType("decimal(18, 2)");
 
             base.OnModelCreating(builder);
         }
