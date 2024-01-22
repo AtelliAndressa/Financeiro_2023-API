@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class SistemaFinanceiroController : ControllerBase
     { 
         private readonly InterfaceSistemaFinanceiro _interfaceSistemaFinanceiro;
