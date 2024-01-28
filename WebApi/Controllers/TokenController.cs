@@ -49,7 +49,8 @@ namespace WebApi.Controllers
                     .AddExpiry(5)
                     .Builder();
 
-                return Ok(new { token = token.value });
+                //return Ok(new { token = token.value });
+                return Ok(token.value);
 
             }
             else
