@@ -38,13 +38,10 @@ namespace WebApi.Controllers
             }
 
             var result = await _signInManager.PasswordSignInAsync(input.Email, input.Password, false, lockoutOnFailure: false);
-
             if (result.Succeeded)
             {
-                // Ensure that the key size is at least 256 bits
-                var secretKey = Encoding.UTF8.GetBytes("Secret_Key-12345678".PadRight(32));
-
-                var token = new TokenJWTBuilder().AddSecurityKey(new SymmetricSecurityKey(secretKey))
+                var token = new TokenJWTBuilder()
+                    .AddSecurityKey(JwtSecuritykey.Create("Secret_Key-fedaf7d8863b48e197b9287d492b708e"))
                     .AddSubject("Canal Dev Net Core")
                     .AddIssuer("Teste.Securiry.Bearer")
                     .AddAudience("Teste.Securiry.Bearer")
@@ -52,7 +49,8 @@ namespace WebApi.Controllers
                     .AddExpiry(5)
                     .Builder();
 
-                return Ok(token.value);
+                return Ok(new { token = token.value });
+
             }
             else
             {
